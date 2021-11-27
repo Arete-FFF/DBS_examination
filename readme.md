@@ -22,5 +22,8 @@ ORDER BY "LONGITUDE" DESC,
     "EARFCN" DESC
 ```
 DataGrip运行界面与部分结果截图
-[![image.png](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01_1.png)](
-https://github.com/Arete-FFF/DBS_examination/blob/main/test.csv)
+[![image.png](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/test.csv)
+
+## 查询2
+
+设置带查询数据取值范围为：
