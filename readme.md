@@ -8,7 +8,6 @@
 |PCI|20|70|
 
 SQL查询代码如下
-
 ```sql
 SELECT "SECTOR_ID", "SECTOR_NAME", "ENODEBID", "ENODEB_NAME", "LONGITUDE",
        "LATITUDE", "PCI" AS "Physical Cell Identity", "AZIMUTH", "HEIGHT"
@@ -22,3 +21,5 @@ ORDER BY "LONGITUDE" DESC,
     "LATITUDE" DESC,
     "EARFCN" DESC
 ```
+
+![DataGrip运行界面与部分结果截图](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01_1.png "Magic Gardens")
