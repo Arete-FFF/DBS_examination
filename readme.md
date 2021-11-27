@@ -21,5 +21,6 @@ ORDER BY "LONGITUDE" DESC,
     "LATITUDE" DESC,
     "EARFCN" DESC
 ```
-
-![DataGrip运行界面与部分结果截图](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01_1.png "Magic Gardens")
+DataGrip运行界面与部分结果截图
+![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01_1.png "DataGrip运行界面与部分结果截图")]
+(https://github.com/Arete-FFF/DBS_examination/blob/main/test.csv)
