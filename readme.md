@@ -54,6 +54,47 @@ ORDER BY "LONGITUDE" DESC,
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
 [![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_01.csv)
 
+## 查询2
+设置带查询数据取值范围为：
+|name|lower|upper|
+|-|-|-|
+|LONGITUDE|112.9|113.1|
+|LATITUDE|33.4|34|
+|PCI|100|3000|
+
+未去重情况：  
+SQL查询代码如下
+```sql
+select "ENODEBID", "ENODEB_NAME", "STYLE", "VENDOR"
+from tbcell
+where "CITY" = 'sanxia'
+and "LONGITUDE" between '112.9' and '113.1'
+and "LATITUDE" between '33.4' and '34'
+and "PCI" between '100' and '300'
+order by "LONGITUDE" asc, "LATITUDE" desc
+;
+```
+查询结果：66条  
+查询时间：76ms
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_01.csv)
+去重情况下：
+SQL查询代码如下
+```sql
+select  "ENODEBID", "ENODEB_NAME", "STYLE", "VENDOR"
+from (select  distinct "ENODEBID", "ENODEB_NAME", "STYLE", "VENDOR"，"LONGITUDE","LATITUDE"
+from tbcell
+where "CITY" = 'sanxia'
+and "LONGITUDE" between '112.9' and '113.1'
+and "LATITUDE" between '33.4' and '34'
+and "PCI" between '100' and '300')
+order by "LONGITUDE" desc ,"LATITUDE"asc
+;
+```
+查询结果：25条  
+查询时间：64ms
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_02.csv)
+有结果可见去重后的总查询时间变短
+
 
 ## 查询3
 
@@ -70,3 +111,4 @@ WHERE ("SECTOR_NAME" LIKE 'A池%' OR
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
 [![GaussDB1_03_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_03_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_03.csv)
+
