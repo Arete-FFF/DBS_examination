@@ -93,7 +93,7 @@ order by "LONGITUDE" desc ,"LATITUDE"asc
 查询结果：25条  
 查询时间：64ms
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_02.csv)
-有结果可见去重后的总查询时间变短
+由结果可见去重后的总查询时间变短
 
 
 ## 查询3
@@ -112,3 +112,34 @@ WHERE ("SECTOR_NAME" LIKE 'A池%' OR
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
 [![GaussDB1_03_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_03_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_03.csv)
 
+
+## 查询5
+
+未去重情况：  
+SQL查询代码如下
+```sql
+SELECT "小区名称"
+FROM tbCellKPI
+WHERE cast("RRC建立成功率qf (%)" as float) > 0.95 UNION
+SELECT "小区名称"
+FROM tbCellKPI
+WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
+```
+查询结果：646条  
+查询时间：64ms
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_2.csv)
+
+去重情况下：
+SQL查询代码如下
+```sql
+SELECT "小区名称"
+FROM tbCellKPI
+WHERE cast("RRC建立成功率qf (%)" as float) > 0.95 UNION ALL
+SELECT "小区名称"
+FROM tbCellKPI
+WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
+```
+查询结果：323条  
+查询时间：62ms
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_1.csv)
+由结果可见去重后的总查询时间变短
