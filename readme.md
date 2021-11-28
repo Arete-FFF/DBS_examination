@@ -77,9 +77,8 @@ CREATE TABLE tbCellKPI(
 primary key ("小区名称")/*,
 FOREIGN KEY ("ENODEB_NAME") REFERENCES tbCell*/
 );
-
 ```
-
+------------------------
 ## 查询1
 
 设置待查询数据取值范围为：
@@ -159,7 +158,6 @@ WHERE ("SECTOR_NAME" LIKE 'A池%' OR
     "ENODEB_NAME" LIKE '%医院%' OR
     "ENODEB_NAME" LIKE '%实验高中%') AND
     ("SECTOR_NAME" LIKE '%-1');
-
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
 [![GaussDB1_03_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_03_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_03.csv)
