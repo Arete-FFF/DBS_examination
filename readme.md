@@ -1,8 +1,10 @@
 # 第一章 数据查询与修改实验
 
-## 数据导入——tbCell建表
+## 数据导入
 
+#### *tbCell*
 ```sql
+DROP TABLE IF EXISTS tbCell;
 CREATE TABLE tbCell (
 "CITY" nvarchar2(255),
 "SECTOR_ID" nvarchar2(255),
@@ -27,6 +29,56 @@ primary key ("SECTOR_ID")
 );
 ```
 
+#### *tbCellKPI*
+```sql
+DROP TABLE IF EXISTS tbCellKPI;
+CREATE TABLE tbCellKPI(
+"起始时间"	nvarchar2(255),
+"网元/基站名称"	nvarchar2(255),
+"小区"	nvarchar2(255),
+"小区名称"	nvarchar2(255),
+"RRC连接建立完成次数 (无)"	nvarchar2(255),
+"RRC连接请求次数（包括重发） (无)"	nvarchar2(255),
+"RRC建立成功率qf (%)"	nvarchar2(255),
+"E-RAB建立成功总次数 (无)"	nvarchar2(255),
+"E-RAB建立尝试总次数 (无)"	nvarchar2(255),
+"E-RAB建立成功率2 (%)"	nvarchar2(255),
+"eNodeB触发的E-RAB异常释放总次数 (无)"	nvarchar2(255),
+"小区切换出E-RAB异常释放总次数 (无)"	nvarchar2(255),
+"E-RAB掉线率(新) (%)"	nvarchar2(255),
+"无线接通率ay (%)"	nvarchar2(255),
+"eNodeB发起的S1 RESET导致的UE Context释放次数 (无)"	nvarchar2(255),
+"UE Context异常释放次数 (无)"	nvarchar2(255),
+"UE Context建立成功总次数 (无)"	nvarchar2(255),
+"无线掉线率 (%)"	nvarchar2(255),
+"eNodeB内异频切换出成功次数 (无)"	nvarchar2(255),
+"eNodeB内异频切换出尝试次数 (无)"	nvarchar2(255),
+"eNodeB内同频切换出成功次数 (无)"	nvarchar2(255),
+"eNodeB内同频切换出尝试次数 (无)"	nvarchar2(255),
+"eNodeB间异频切换出成功次数 (无)"	nvarchar2(255),
+"eNodeB间异频切换出尝试次数 (无)"	nvarchar2(255),
+"eNodeB间同频切换出成功次数 (无)"	nvarchar2(255),
+"eNodeB间同频切换出尝试次数 (无)"	nvarchar2(255),
+"eNB内切换成功率 (%)"	nvarchar2(255),
+"eNB间切换成功率 (%)"	nvarchar2(255),
+"同频切换成功率zsp (%)"	nvarchar2(255),
+"异频切换成功率zsp (%)"	nvarchar2(255),
+"切换成功率 (%)"	nvarchar2(255),
+"小区PDCP层所接收到的上行数据的总吞吐量 (比特)"	nvarchar2(255),
+"小区PDCP层所发送的下行数据的总吞吐量 (比特)"	nvarchar2(255),
+"RRC重建请求次数 (无)"	nvarchar2(255),
+"RRC连接重建比率 (%)"	nvarchar2(255),
+"通过重建回源小区的eNodeB间同频切换出执行成功次数 (无)"	nvarchar2(255),
+"通过重建回源小区的eNodeB间异频切换出执行成功次数 (无)"	nvarchar2(255),
+"通过重建回源小区的eNodeB内同频切换出执行成功次数 (无)"	nvarchar2(255),
+"通过重建回源小区的eNodeB内异频切换出执行成功次数 (无)"	nvarchar2(255),
+"eNB内切换出成功次数 (次)"	nvarchar2(255),
+"eNB内切换出请求次数 (次)"	nvarchar2(255),
+primary key ("小区名称")/*,
+FOREIGN KEY ("ENODEB_NAME") REFERENCES tbCell*/
+);
+
+```
 
 ## 查询1
 
