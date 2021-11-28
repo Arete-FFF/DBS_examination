@@ -131,7 +131,7 @@ ORDER BY "LONGITUDE" DESC,
     "EARFCN" DESC
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_01.csv)
+[![GaussDB1_01](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_01.csv)
 
 ## 查询2
 设置带查询数据取值范围为：
@@ -188,7 +188,7 @@ WHERE ("SECTOR_NAME" LIKE 'A池%' OR
     ("SECTOR_NAME" LIKE '%-1');
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_03_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_03_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_03.csv)
+[![GaussDB1_03](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_03.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_03.csv)
 
 
 ## 查询5
@@ -230,5 +230,5 @@ SELECT *
 FROM tbMROData, tbCellTraffic;
 ```
 查询效果如下：
-[![GaussDB1_07_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_07_1.png)]()  
+[![GaussDB1_07](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_07.png)]()  
 由结果可见,大规模笛卡尔积的结果在仅显示结果头部时并不需要大量时间，但以指定查询结尾页为例，Datagrip客户端加载7分钟后报错，强行退出查询程序。
