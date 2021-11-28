@@ -78,7 +78,35 @@ primary key ("小区名称")/*,
 FOREIGN KEY ("ENODEB_NAME") REFERENCES tbCell*/
 );
 ```
-------------------------
+
+#### *tbMROData*
+```sql
+DROP TABLE IF EXISTS tbMROData;
+CREATE TABLE tbMROData(
+"TimeStamp"	nvarchar2(255),
+"ServingSector"	nvarchar2(255),
+"InterferingSector"	nvarchar2(255),
+"LteScRSRP"	nvarchar2(255),
+"LteNcRSRP"	nvarchar2(255),
+"LteNcEarfcn"	nvarchar2(255),
+"LteNcPci"	nvarchar2(255)/*,
+primary key ("TimeStamp", "ServingSector", "InterferingSector")*/
+);
+```
+
+#### *tbCellTraffic*
+```sql
+DROP TABLE IF EXISTS tbCellTraffic;
+CREATE TABLE tbCellTraffic(
+"Date"	nvarchar2(255),
+"Hour"	nvarchar2(255),
+"Sector_ID"	nvarchar2(255),
+"Traffic"	nvarchar2(255),
+primary key ("Date", "Hour", "Sector_ID")
+);
+```
+-------------------------------------------------------------------------------
+
 ## 查询1
 
 设置待查询数据取值范围为：
@@ -127,7 +155,7 @@ order by "LONGITUDE" asc, "LATITUDE" desc
 ```
 查询结果：66条  
 查询时间：76ms
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_1.csv)
+[![GaussDB1_02_1](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_1.csv)
 去重情况下：
 SQL查询代码如下
 ```sql
@@ -143,7 +171,7 @@ order by "LONGITUDE" desc ,"LATITUDE"asc
 ```
 查询结果：25条  
 查询时间：64ms
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_2.csv)
+[![GaussDB1_02_2](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_2.csv)
 由结果可见去重后的总查询时间变短
 
 
@@ -177,7 +205,7 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：646条  
 查询时间：64ms
-[![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_2.csv)
+[![GaussDB1_05_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_2.csv)
 
 去重情况下：
 SQL查询代码如下
@@ -191,7 +219,16 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：323条  
 查询时间：62ms
-[![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_1.csv)
+[![GaussDB1_05_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_1.csv)
 由结果可见去重后的总查询时间变短
 
 ## 查询7
+
+查询代码如下
+```sql
+SELECT *
+FROM tbMROData, tbCellTraffic;
+```
+查询效果如下：
+[![GaussDB1_07_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)]()  
+由结果可见,大规模笛卡尔积的结果在仅显示结果头部时并不需要大量时间，但以指定查询结尾页为例，Datagrip客户端加载7分钟后报错，强行退出查询程序。
