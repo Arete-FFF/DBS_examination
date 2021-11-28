@@ -127,7 +127,7 @@ order by "LONGITUDE" asc, "LATITUDE" desc
 ```
 查询结果：66条  
 查询时间：76ms
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_01.csv)
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_1.csv)
 去重情况下：
 SQL查询代码如下
 ```sql
@@ -143,7 +143,7 @@ order by "LONGITUDE" desc ,"LATITUDE"asc
 ```
 查询结果：25条  
 查询时间：64ms
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_02.csv)
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_02_2.csv)
 由结果可见去重后的总查询时间变短
 
 
@@ -193,3 +193,5 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 查询时间：62ms
 [![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_1.csv)
 由结果可见去重后的总查询时间变短
+
+## 查询7
