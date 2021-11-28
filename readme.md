@@ -230,5 +230,5 @@ SELECT *
 FROM tbMROData, tbCellTraffic;
 ```
 查询效果如下：
-[![GaussDB1_07_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)]()  
+[![GaussDB1_07_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_07_1.png)]()  
 由结果可见,大规模笛卡尔积的结果在仅显示结果头部时并不需要大量时间，但以指定查询结尾页为例，Datagrip客户端加载7分钟后报错，强行退出查询程序。
