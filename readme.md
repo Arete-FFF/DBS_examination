@@ -127,7 +127,7 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：646条  
 查询时间：64ms
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_2.csv)
+[![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_2.csv)
 
 去重情况下：
 SQL查询代码如下
@@ -141,5 +141,5 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：323条  
 查询时间：62ms
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_1.csv)
+[![GaussDB1_01_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_2.csv)
 由结果可见去重后的总查询时间变短
