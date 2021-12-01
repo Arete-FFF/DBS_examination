@@ -202,7 +202,7 @@ WHERE "SECTOR_NAME" LIKE '_____-HLHF-_' AND
       LENGTH("ENODEB_NAME") > 8;
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_04.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_04.csv)
 ## 查询5
 
 未去重情况：  
