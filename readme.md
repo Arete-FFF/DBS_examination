@@ -105,6 +105,24 @@ CREATE TABLE tbCellTraffic(
 primary key ("Date", "Hour", "Sector_ID")
 );
 ```
+#### *tbAdjCell*
+```sql
+DROP TABLE IF EXISTS tbAdjCell;
+CREATE TABLE tbAdjCell (
+"S_SECTOR_ID" nvarchar2(255),
+"N_SECTOR_ID" nvarchar2(255),
+"S_EARFCN" nvarchar2(255),
+"N_EARFCN" nvarchar2(255)
+);
+```
+#### *tbSecAdjCell*
+```sql
+DROP TABLE IF EXISTS tbSecAdjCell;
+CREATE TABLE tbSecAdjCell (
+"S_SECTOR_ID" nvarchar2(255),
+"N_SECTOR_ID" nvarchar2(255)
+);
+```
 -------------------------------------------------------------------------------
 
 ## 查询1
@@ -283,3 +301,10 @@ FROM tbMROData, tbCellTraffic;
 [![GaussDB1_07](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_07.png)]()  
 由结果可见,大规模笛卡尔积的结果在仅显示结果头部时并不需要大量时间，但以指定查询结尾页为例，Datagrip客户端加载7分钟后报错，强行退出查询程序。  
 本次查询不保留csv文件。
+
+## 查询8
+```sql
+SELECT "SECTOR_ID", "SECTOR_NAME", "EARFCN", tbadjcell."N_SECTOR_ID" as "ADJ_SECTOR_ID", tbadjcell."N_EARFCN" as "ADJ_EARFCN", "EARFCN" as "SEC_ADJ_EARFCN"
+FROM tbcell join (tbadjcell natural join tbsecadjcell) on "SECTOR_ID" = tbadjcell."S_SECTOR_ID"
+```
+查询结果如下：
