@@ -245,8 +245,24 @@ EXCEPT (SELECT t1."SECTOR_NAME", t1."LATITUDE"
 FROM tbcell AS t1 ,tbcell AS t2
 WHERE t1."LATITUDE" < t2."LATITUDE");
 ```
-查询时间:23.384s
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_04_1.png)]https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_1.csv
+查询时间:23.469s
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_1.png))](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_1.csv)
+
+使用EXCEPT ALL   
+SQL查询代码如下
+```sql
+SELECT "SECTOR_NAME", "LATITUDE"
+FROM tbcell
+EXCEPT ALL(SELECT t1."SECTOR_NAME", t1."LATITUDE"
+FROM tbcell AS t1 ,tbcell AS t2
+WHERE t1."LATITUDE" < t2."LATITUDE");
+```
+查询时间:23.665s
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_2.csv)
+
+使用 MAX 函数
+SQL查询代码如下
+
 ## 查询7
 
 查询代码如下
