@@ -202,7 +202,7 @@ WHERE "SECTOR_NAME" LIKE '_____-HLHF-_' AND
       LENGTH("ENODEB_NAME") > 8;
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_04.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_04.csv)
 ## 查询5
 
 未去重情况：  
@@ -234,7 +234,19 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 [![GaussDB1_05_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_05_1.csv)
 由结果可见去重后的总查询时间变短
 
+## 查询6
 
+使用EXCEPT  
+SQL查询代码如下
+```sql
+SELECT "SECTOR_NAME", "LATITUDE"
+FROM tbcell
+EXCEPT (SELECT t1."SECTOR_NAME", t1."LATITUDE"
+FROM tbcell AS t1 ,tbcell AS t2
+WHERE t1."LATITUDE" < t2."LATITUDE");
+```
+查询时间:23.384s
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_04_1.png)]https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_1.csv
 ## 查询7
 
 查询代码如下
