@@ -105,6 +105,31 @@ CREATE TABLE tbCellTraffic(
 primary key ("Date", "Hour", "Sector_ID")
 );
 ```
+
+
+#### *tbATUC2I*
+```sql
+DROP TABLE IF EXISTS tbATUC2I;
+CREATE TABLE tbATUC2I(
+"SECTOR_ID"	nvarchar2(255),
+"NCELL_ID"	nvarchar2(255),
+"RATIO_ALL"	nvarchar2(255),
+"RANK"	nvarchar2(255),
+"COSITE"	nvarchar2(255),
+primary key ("SECTOR_ID", "NCELL_ID")
+);
+```
+
+
+#### *tbATUHandover*
+```sql
+DROP TABLE IF EXISTS tbATUHandover;
+CREATE TABLE tbATUHandover(
+"SSECTOR_ID"	nvarchar2(255),
+"NSECTOR_ID"	nvarchar2(255),
+"HOATT"	nvarchar2(255)
+);
+```
 -------------------------------------------------------------------------------
 
 ## 查询1
