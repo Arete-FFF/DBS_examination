@@ -380,3 +380,30 @@ ORDER BY B."count" DESC
 
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
+
+
+## 查询14 
+使用set membership查询  
+查询代码如下：
+```sql
+SELECT tbcell."SECTOR_ID", tbcell."SECTOR_NAME", tbcell."PCI" AS "PCI_OLD", tbpciassignment."PCI" AS "PCI_NEW"
+FROM tbcell JOIN tbpciassignment ON tbcell."SECTOR_ID" = tbpciassignment."SECTOR_ID"
+WHERE
+  tbcell."SECTOR_ID" in (SELECT "SECTOR_ID" FROM tboptcell WHERE "CELL_TYPE" = '优化区') AND
+  tbcell."PCI" <> tbpciassignment."PCI"
+```
+查询时间：83ms  
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_14_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_14_1.csv)
+
+使用非嵌套查询  
+查询代码如下：
+```sql
+SELECT tbcell."SECTOR_ID", tbcell."SECTOR_NAME", tbcell."PCI" AS "PCI_OLD", tbpciassignment."PCI" AS "PCI_NEW"
+FROM (tbcell JOIN tbpciassignment ON tbcell."SECTOR_ID" = tbpciassignment."SECTOR_ID") JOIN tboptcell ON tbcell."SECTOR_ID" = tboptcell."SECTOR_ID"
+WHERE "CELL_TYPE" = '优化区' AND tbcell."PCI" <> tbpciassignment."PCI"
+```
+
+查询时间：72ms  
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_14_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_14_2.csv)
