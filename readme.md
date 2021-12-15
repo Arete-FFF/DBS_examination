@@ -278,10 +278,8 @@ WHERE t1."LATITUDE" < t2."LATITUDE");
 查询时间:23.665s
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_2.csv)
 
-使用 MAX 函数
+使用 MAX 函数  
 SQL查询代码如下
-<<<<<<<<< Temporary merge branch 1
-=========
 ```sql
 SELECT "SECTOR_NAME", "LATITUDE"
 FROM tbcell
@@ -291,7 +289,6 @@ WHERE "LATITUDE" =  (SELECT max("LATITUDE")
 查询时间：0.072s
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_3.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_3.csv)
 使用聚集函数查询时间能大大降低，查询结果并无区别
->>>>>>>>> Temporary merge branch 2
 
 ## 查询7
 
