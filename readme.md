@@ -373,11 +373,16 @@ with TEMP_11 AS(
     /*将数据汇总为每月忙时时段*/
     SELECT "SECTOR_ID", sum("dailysum_Traffic") AS "sum_Traffic"
     FROM (/*将数据汇总为每天忙时时段*/
-          SELECT "SECTOR_ID", "Date", sum("Traffic") AS "dailysum_Traffic"
-          FROM tbCellTraffic, tbCell
-          WHERE "SECTOR_ID" = "Sector_ID"
-          GROUP BY "SECTOR_ID", "Date"
-          HAVING "Date" LIKE '%/5/2020%'
+        SELECT "SECTOR_ID", "Date", sum("Traffic") AS "dailysum_Traffic"
+        FROM tbCellTraffic, tbCell
+        WHERE "SECTOR_ID" = "Sector_ID"
+        GROUP BY "SECTOR_ID", "Date", "Hour", "LONGITUDE", "LATITUDE"
+        HAVING "Date" LIKE '%/5/2020%'
+        AND ("Hour" BETWEEN '9' AND '11'
+            OR "Hour" BETWEEN '19' AND '21'
+        )
+        AND "LONGITUDE" BETWEEN '112.2' AND '112.7'
+        AND "LATITUDE" BETWEEN '33.2' AND '33.7'
     )
     GROUP BY "SECTOR_ID"
 ),
