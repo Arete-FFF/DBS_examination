@@ -430,7 +430,34 @@ ORDER BY B."count" DESC
 
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
+## 查询13
 
+查询代码如下：
+```sql
+WITH TEMP_13 AS(/*将数据汇总为每天忙时时段*/
+    SELECT "SECTOR_ID", avg("sum_Traffic") AS "avg_Traffic"
+    FROM(
+        SELECT "SECTOR_ID", sum("Traffic") AS "sum_Traffic"
+        FROM tbCellTraffic, tbCell
+        WHERE "SECTOR_ID" = "Sector_ID"
+        AND "Date" LIKE '%2020%'
+        GROUP BY "SECTOR_ID"
+        UNION /*用UNION的方式将2019年总量与2020年总量拼接起来，再求两年总量的平均值*/
+        SELECT "SECTOR_ID", sum("Traffic") AS "sum_Traffic"
+        FROM tbCellTraffic, tbCell
+        WHERE "SECTOR_ID" = "Sector_ID"
+        AND "Date" LIKE '%2019%'
+        GROUP BY "SECTOR_ID"
+    )
+    GROUP BY "SECTOR_ID"
+)
+SELECT "SECTOR_ID", "SECTOR_NAME", "avg_Traffic"
+FROM TEMP_13 NATURAL JOIN tbCell
+WHERE "avg_Traffic" > (SELECT avg("avg_Traffic") AS "avg_All" FROM TEMP_13)
+ORDER BY "avg_Traffic" DESC;
+```
+查询效果如下:
+[![GaussDB1_13](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_13.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_13.csv)
 
 ## 查询14 
 使用set membership查询  
