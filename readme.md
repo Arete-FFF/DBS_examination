@@ -176,7 +176,7 @@ DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文
 [![GaussDB1_01](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_01.csv)
 
 ## 查询2
-设置带查询数据取值范围为：
+设置待查询数据取值范围为：
 | name      | lower | upper |
 | --------- | ----- | ----- |
 | LONGITUDE | 112.9 | 113.1 |
@@ -365,7 +365,13 @@ ORDER BY "C2I_Mean" DESC
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
 
 ## 查询11
-本查询使用一个公共头和两组接口对应题干要求的两个查询。
+本查询使用一个公共头和两组接口对应题干要求的两个查询。  
+设置待查询数据取值范围为：
+| name      | lower | upper |
+| --------- | ----- | ----- |
+| LONGITUDE | 112.2 | 112.7 |
+| LATITUDE  | 33.2  | 33.7  | 
+
 查询代码如下：
 ```sql
 /*11_HEAD*/
