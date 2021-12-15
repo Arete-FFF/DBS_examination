@@ -360,12 +360,49 @@ WHERE A."C2I_Mean" > (SELECT "C2I_Mean"
                             tbC2I."NCELL" = '259772-0')
 ORDER BY "C2I_Mean" DESC
 ```
-
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
-=======
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
 
+## 查询11
+本查询使用一个公共头和两组接口对应题干要求的两个查询。
+查询代码如下：
+```sql
+/*11_HEAD*/
+with TEMP_11 AS(
+    /*将数据汇总为每月忙时时段*/
+    SELECT "SECTOR_ID", sum("dailysum_Traffic") AS "sum_Traffic"
+    FROM (/*将数据汇总为每天忙时时段*/
+          SELECT "SECTOR_ID", "Date", sum("Traffic") AS "dailysum_Traffic"
+          FROM tbCellTraffic, tbCell
+          WHERE "SECTOR_ID" = "Sector_ID"
+          GROUP BY "SECTOR_ID", "Date"
+          HAVING "Date" LIKE '%/5/2020%'
+    )
+    GROUP BY "SECTOR_ID"
+),
+TABLE_11 AS(
+    SELECT max("sum_Traffic") AS "max_Traffic",
+       min("sum_Traffic") AS "min_Traffic",
+       avg("sum_Traffic") AS "avg_Traffic"
+    FROM TEMP_11
+)
+/*在使用时需要删除另一个查询入口*/
+
+/*11_1*/
+SELECT * FROM TABLE_11;
+
+/*11_2*/
+SELECT "SECTOR_ID", "SECTOR_NAME", "LONGITUDE", "LATITUDE", "sum_Traffic"
+FROM (TEMP_11 NATURAL JOIN tbCell), TABLE_11
+WHERE "sum_Traffic" = "max_Traffic";
+```
+
+查询结果如下：  
+（1）全部小区的最大月忙时话务量、最小月忙时话务量、平均月忙时话务量;
+[![GaussDB1_11_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_11_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_11_1.csv)  
+（2）具有最大月忙时话务量的小区，列出该小区ID、名称、经纬度位置，以及月忙时话务量。
+[![GaussDB1_11_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_11_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_11_2.csv)
 
 ## 查询12
 查询代码如下：
