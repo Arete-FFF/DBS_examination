@@ -123,6 +123,21 @@ CREATE TABLE tbSecAdjCell (
 "N_SECTOR_ID" nvarchar2(255)
 );
 ```
+
+#### *tbC21*
+```sql
+DROP TABLE IF EXISTS tbC21;
+CREATE TABLE tbC21 (
+"CITY"	nvarchar2(255),
+"SCELL"	nvarchar2(255),
+"NCELL"	nvarchar2(255),
+"PrC2I9"nvarchar2(255),
+"C2I_Mean"	nvarchar2(255),
+"std"	nvarchar2(255),
+"SampleCount"	nvarchar2(255),
+"WeightedC2I" nvarchar2(255)
+);
+```
 -------------------------------------------------------------------------------
 
 ## 查询1
@@ -278,10 +293,8 @@ WHERE t1."LATITUDE" < t2."LATITUDE");
 查询时间:23.665s
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_2.csv)
 
-使用 MAX 函数
+使用 MAX 函数  
 SQL查询代码如下
-<<<<<<<<< Temporary merge branch 1
-=========
 ```sql
 SELECT "SECTOR_NAME", "LATITUDE"
 FROM tbcell
@@ -291,7 +304,6 @@ WHERE "LATITUDE" =  (SELECT max("LATITUDE")
 查询时间：0.072s
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_3.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_06_3.csv)
 使用聚集函数查询时间能大大降低，查询结果并无区别
->>>>>>>>> Temporary merge branch 2
 
 ## 查询7
 
@@ -306,9 +318,17 @@ FROM tbMROData, tbCellTraffic;
 本次查询不保留csv文件。
 
 ## 查询8
+查询代码如下：
 ```sql
 SELECT "SECTOR_ID", "SECTOR_NAME", "EARFCN", tbadjcell."N_SECTOR_ID" as "ADJ_SECTOR_ID", tbadjcell."N_EARFCN" as "ADJ_EARFCN", "EARFCN" as "SEC_ADJ_EARFCN"
 FROM tbcell join (tbadjcell natural join tbsecadjcell) on "SECTOR_ID" = tbadjcell."S_SECTOR_ID"
 ```
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_08_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_08.csv)
+
+## 查询10
+查询代码如下:
+```sql
+
+```
+
