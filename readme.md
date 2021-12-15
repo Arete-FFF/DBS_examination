@@ -138,6 +138,15 @@ CREATE TABLE tbC2I (
 "WeightedC2I" nvarchar2(255)
 );
 ```
+#### *tbOptCell*
+```sql
+DROP TABLE IF EXISTS tbOptCell;
+CREATE TABLE tbOptCell (
+"SECTOR_ID"	nvarchar2(255),
+"EARFCN"	nvarchar2(255),
+"CELL_TYPE" nvarchar2(255)
+);
+1```
 -------------------------------------------------------------------------------
 
 ## 查询1
@@ -354,3 +363,20 @@ ORDER BY "C2I_Mean" DESC
 
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
+
+
+## 查询12
+查询代码如下：
+```sql
+WITH A AS(SELECT "S_SECTOR_ID",count("S_SECTOR_ID")
+          FROM tbadjcell
+          GROUP BY "S_SECTOR_ID"
+          HAVING count("S_SECTOR_ID") > 10)
+SELECT B."SECTOR_ID", B."SECTOR_NAME", B."count"
+FROM (A join tbcell on A."S_SECTOR_ID" = tbcell."SECTOR_ID" ) AS B natural join tboptcell
+WHERE "CELL_TYPE" = '优化区'
+ORDER BY B."count" DESC
+```
+
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
