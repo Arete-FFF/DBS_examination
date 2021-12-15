@@ -124,10 +124,10 @@ CREATE TABLE tbSecAdjCell (
 );
 ```
 
-#### *tbC21*
+#### *tbC2I*
 ```sql
-DROP TABLE IF EXISTS tbC21;
-CREATE TABLE tbC21 (
+DROP TABLE IF EXISTS tbC2I;
+CREATE TABLE tbC2I (
 "CITY"	nvarchar2(255),
 "SCELL"	nvarchar2(255),
 "NCELL"	nvarchar2(255),
@@ -337,3 +337,20 @@ WHERE "SECTOR_ID" LIKE '238397-1';
 ```
 查询效果如下:
 [![GaussDB1_09](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_09.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_09.csv)
+
+
+## 查询10
+
+查询代码如下：
+```sql
+SELECT "SCELL", A."SECTOR_NAME" AS "M_NAME", "NCELL", B."SECTOR_NAME" AS "N_NAME","C2I_Mean"
+FROM (tbC2I join tbcell on tbcell."SECTOR_ID" = tbC2I."SCELL" ) AS A join tbcell AS B on A."NCELL" = B."SECTOR_ID"
+WHERE A."C2I_Mean" > (SELECT "C2I_Mean"
+                      FROM tbC2I
+                      WHERE tbC2I."SCELL" = '124673-0' AND
+                            tbC2I."NCELL" = '259772-0')
+ORDER BY "C2I_Mean" DESC
+```
+
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
