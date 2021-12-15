@@ -362,7 +362,6 @@ ORDER BY "C2I_Mean" DESC
 ```
 
 查询结果如下：
-<<<<<<< HEAD
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
 =======
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
@@ -382,13 +381,6 @@ ORDER BY B."count" DESC
 ```
 
 查询结果如下：
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 8e27da3 (Update readme.md)
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
 
 
@@ -417,19 +409,3 @@ WHERE "CELL_TYPE" = '优化区' AND tbcell."PCI" <> tbpciassignment."PCI"
 查询时间：72ms  
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_14_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_14_2.csv)
->>>>>>> ca8d26be8bc8d3a218d2f85e788bc4f7983a3667
-<<<<<<< HEAD
-=======
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
->>>>>>> parent of ca8d26b (new14题完成)
-=======
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
->>>>>>> parent of ca8d26b (new14题完成)
-=======
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
->>>>>>> parent of ca8d26b (new14题完成)
-=======
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
->>>>>>> parent of ca8d26b (new14题完成)
-=======
->>>>>>> parent of 8e27da3 (Update readme.md)
