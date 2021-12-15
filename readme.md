@@ -318,6 +318,7 @@ FROM tbMROData, tbCellTraffic;
 本次查询不保留csv文件。
 
 ## 查询8
+
 查询代码如下：
 ```sql
 SELECT "SECTOR_ID", "SECTOR_NAME", "EARFCN", tbadjcell."N_SECTOR_ID" as "ADJ_SECTOR_ID", tbadjcell."N_EARFCN" as "ADJ_EARFCN", "EARFCN" as "SEC_ADJ_EARFCN"
@@ -325,3 +326,14 @@ FROM tbcell join (tbadjcell natural join tbsecadjcell) on "SECTOR_ID" = tbadjcel
 ```
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_08_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_08.csv)
+
+## 查询9
+
+查询代码如下：
+```sql
+SELECT "SECTOR_NAME", "SECTOR_ID", "NCELL_ID", "NSECTOR_ID"
+FROM tbcell NATURAL JOIN tbATUC2I NATURAL JOIN tbATUHandover
+WHERE "SECTOR_ID" LIKE '238397-1';
+```
+查询效果如下:
+[![GaussDB1_09](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_09.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_09.csv)
