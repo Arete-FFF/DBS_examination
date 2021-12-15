@@ -311,3 +311,4 @@ SELECT "SECTOR_ID", "SECTOR_NAME", "EARFCN", tbadjcell."N_SECTOR_ID" as "ADJ_SEC
 FROM tbcell join (tbadjcell natural join tbsecadjcell) on "SECTOR_ID" = tbadjcell."S_SECTOR_ID"
 ```
 查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_08_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_08.csv)
