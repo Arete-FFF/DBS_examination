@@ -147,6 +147,20 @@ CREATE TABLE tbOptCell (
 "CELL_TYPE" nvarchar2(255)
 );
 ```
+
+#### *tbHandOver*
+```sql
+DROP TABLE IF EXISTS tbHandOver;
+CREATE TABLE tbHandOver (
+"CITY"	nvarchar2(255),
+"SCELL"	nvarchar2(255),
+"NCELL"	nvarchar2(255),
+"HOATT"	nvarchar2(255),
+"HOSUCC"	nvarchar2(255),
+"HOSUCCRATE" nvarchar2(255)
+);
+);
+```
 -------------------------------------------------------------------------------
 
 ## 查询1
@@ -488,7 +502,6 @@ WHERE "CELL_TYPE" = '优化区' AND tbcell."PCI" <> tbpciassignment."PCI"
 ## 查询15 
 
 1. 
-
 查询代码如下:   
 ```sql
 SELECT "SECTOR_NAME", "SECTOR_ID", "HEIGHT"
@@ -504,8 +517,6 @@ WHERE "HEIGHT" > SOME(
 [![GaussDB1_15_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_15_1.csv)  
 
 2. 
-
-
 设置待查询数据取值范围为：
 | name      | lower | upper |
 | --------- | ----- | ----- |
@@ -531,3 +542,33 @@ FROM (/*获取题干要求的ID与RSRP值*/
 ```
 查询结果如下：
 [![GaussDB1_15_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_15_2.csv)
+
+## 查询16
+
+1. 
+查询代码如下:   
+```sql
+SELECT "Sector_ID", count("Hour") AS "Hour_count"
+FROM tbcelltraffic
+GROUP BY "Sector_ID"
+HAVING "Hour_count" >= all (SELECT count("Hour") AS "Hour_count"
+                            FROM tbcelltraffic
+                            GROUP BY "Sector_ID")
+```
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_16_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_16_1.csv)
+
+
+2. 
+查询代码如下：
+```sql
+SELECT "SCELL", "NCELL", "HOATT"
+FROM tbhandover
+WHERE "HOATT" >= all (SELECT max("HOATT")
+                      FROM tbhandover);
+
+```
+
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_16_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_16_2.csv)
+
