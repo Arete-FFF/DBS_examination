@@ -764,6 +764,31 @@ FROM (
      ) NATURAL JOIN TEMP_21
 WHERE "MAX_count" = "count_NCELL"
 ```
-查询结果如下：
+查询结果如下：  
 [![GaussDB1_21](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_21.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_21.csv) 
+
+## 查询23
+查询代码如下:
+```sql
+SELECT DISTINCT *
+FROM tbpciassignment NATURAL JOIN (
+    SELECT COUNT("PCI") AS COUNT_PCI
+    FROM tbpciassignment
+    GROUP BY "ENODEB_ID"
+)
+WHERE COUNT_PCI > 1
+```
+查询结果如下：  
+[![GaussDB1_23](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_23.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_23.csv)   
+所以，函数依赖ENODEB_ID→PCI不成立，以上查询到的元组作为判断依据。
+
+
+## 查询25
+插入代码如下:
+```sql
+INSERT INTO tbadjcell("S_SECTOR_ID", "N_SECTOR_ID")
+SELECT "S_SECTOR_ID", "N_SECTOR_ID"
+FROM tbsecadjcell
+WHERE "S_SECTOR_ID" = '124673-0';
+```
 
