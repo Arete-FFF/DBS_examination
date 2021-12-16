@@ -148,10 +148,6 @@ CREATE TABLE tbOptCell (
 "CELL_TYPE" nvarchar2(255)
 );
 ```
-
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 #### *tbATUdata*
 ```sql
 DROP TABLE IF EXISTS tbATUdata;
@@ -198,34 +194,13 @@ PRIMARY KEY ("seq", "FileName")
 #### *tbHandOver*
 ```sql
 DROP TABLE IF EXISTS tbHandOver;
-CREATE TABLE tbHandOver(
-=======
->>>>>>> Stashed changes
-#### *tbHandOver*
-```sql
-DROP TABLE IF EXISTS tbHandOver;
 CREATE TABLE tbHandOver (
-<<<<<<< Updated upstream
-=======
->>>>>>> cccdeb83fc5aa752e55318c4e81601f33a2f177a
->>>>>>> Stashed changes
 "CITY"	nvarchar2(255),
 "SCELL"	nvarchar2(255),
 "NCELL"	nvarchar2(255),
 "HOATT"	nvarchar2(255),
 "HOSUCC"	nvarchar2(255),
-<<<<<<< Updated upstream
 "HOSUCCRATE" nvarchar2(255)
-);
-=======
-<<<<<<< HEAD
-"HOSUCCRATE"	nvarchar2(255),
-PRIMARY KEY ("SCELL", "NCELL")
-=======
-"HOSUCCRATE" nvarchar2(255)
-);
->>>>>>> cccdeb83fc5aa752e55318c4e81601f33a2f177a
->>>>>>> Stashed changes
 );
 ```
 -------------------------------------------------------------------------------
@@ -443,7 +418,7 @@ ORDER BY "C2I_Mean" DESC
 ```
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_10.csv)
+
 
 ## 查询11
 本查询使用一个公共头和两组接口对应题干要求的两个查询。  
@@ -508,9 +483,10 @@ FROM (A join tbcell on A."S_SECTOR_ID" = tbcell."SECTOR_ID" ) AS B natural join 
 WHERE "CELL_TYPE" = '优化区'
 ORDER BY B."count" DESC
 ```
-
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_12.csv)
+
+
 ## 查询13
 
 查询代码如下：
@@ -610,39 +586,6 @@ FROM (/*获取题干要求的ID与RSRP值*/
 查询结果如下：
 [![GaussDB1_15_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_15_2.csv)
 
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-## 查询17
-1. 
-查询代码如下:   
-```sql
-SELECT DISTINCT "SCELL"
-FROM tbHandOver AS tb1
-WHERE NOT EXISTS(/*恰好全部减掉说明后一个集合完全覆盖了前一个集合，故NOT EXISTS返回True*/
-        /*生成四元素集合以供求差*/
-        (
-            SELECT '15290-128'
-            UNION
-            SELECT '259595-1'
-            UNION
-            SELECT '124711-0'
-            UNION
-            SELECT '47444-1'
-        )
-        EXCEPT
-        /*对于tb1的每一条记录，用倍增法将所有同SCELL的值抽出来叠放在一起，tb2用于铺陈不同NCELL的结果*/
-        (
-            SELECT tb2."NCELL"
-            FROM tbHandOver AS tb2
-            WHERE tb1."SCELL" = tb2."SCELL"
-        )
-    );
-```
-查询结果如下：
-[![GaussDB1_17_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_17_1.csv)  
-=======
->>>>>>> Stashed changes
 ## 查询16
 
 1. 
@@ -671,6 +614,37 @@ WHERE "HOATT" >= all (SELECT max("HOATT")
 
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_16_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_16_2.csv)
+
+
+## 查询17
+1. 
+查询代码如下:   
+```sql
+SELECT DISTINCT "SCELL"
+FROM tbHandOver AS tb1
+WHERE NOT EXISTS(/*恰好全部减掉说明后一个集合完全覆盖了前一个集合，故NOT EXISTS返回True*/
+        /*生成四元素集合以供求差*/
+        (
+            SELECT '15290-128'
+            UNION
+            SELECT '259595-1'
+            UNION
+            SELECT '124711-0'
+            UNION
+            SELECT '47444-1'
+        )
+        EXCEPT
+        /*对于tb1的每一条记录，用倍增法将所有同SCELL的值抽出来叠放在一起，tb2用于铺陈不同NCELL的结果*/
+        (
+            SELECT tb2."NCELL"
+            FROM tbHandOver AS tb2
+            WHERE tb1."SCELL" = tb2."SCELL"
+        )
+    );
+```
+查询结果如下：
+[![GaussDB1_17_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_17_1.csv)  
+
 
 
 ## 查询18
@@ -717,7 +691,19 @@ WHERE "小区名称" = "SECTOR_NAME" AND
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_20.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_20.csv)
 
 
-<<<<<<< Updated upstream
-=======
->>>>>>> cccdeb83fc5aa752e55318c4e81601f33a2f177a
->>>>>>> Stashed changes
+## 查询22
+查询代码如下
+```sql
+SELECT "TimeStamp", "ServingSector", "InterferingSector",  count("LteNcPci")
+FROM tbmrodata
+GROUP BY "TimeStamp", "ServingSector", "InterferingSector"
+HAVING count("LteNcPci") > 1;
+```
+
+根据题目要求可知，判断"TimeStamp", "ServingSector", "InterferingSector"是否组成超键。将这三列进行聚类，然后随机统计其他列个数，若存在大于1的行，则证明这三个键不能组成超键
+
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_22.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_22.csv)
+由查询结果可知，存在许多count>1的元组  
+故"TimeStamp", "ServingSector", "InterferingSector"不能组成超键
+
