@@ -229,7 +229,7 @@ ORDER BY "LONGITUDE" DESC,
     "EARFCN" DESC
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_01](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_01.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_01.csv)
+[![GaussDB1_01](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_01.csv)
 
 ## 查询2
 设置待查询数据取值范围为：
@@ -288,7 +288,7 @@ WHERE ("SECTOR_NAME" LIKE 'A池%' OR
     ("SECTOR_NAME" LIKE '%-1');
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_03](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_03.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_03.csv)
+[![GaussDB1_03](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_03.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_03.csv)
 
 ## 查询4
 
@@ -315,7 +315,7 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：646条  
 查询时间：64ms
-[![GaussDB1_05_2](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_2.csv)
+[![GaussDB1_05_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_2.csv)
 
 去重情况下：
 SQL查询代码如下
@@ -329,7 +329,7 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：323条  
 查询时间：62ms
-[![GaussDB1_05_1](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_1.csv)
+[![GaussDB1_05_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_1.csv)
 由结果可见去重后的总查询时间变短
 
 ## 查询6
@@ -378,7 +378,7 @@ SELECT *
 FROM tbMROData, tbCellTraffic;
 ```
 查询效果如下：
-[![GaussDB1_07](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_07.png)]()  
+[![GaussDB1_07](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_07.png)]()  
 由结果可见,大规模笛卡尔积的结果在仅显示结果头部时并不需要大量时间，但以指定查询结尾页为例，Datagrip客户端加载7分钟后报错，强行退出查询程序。  
 本次查询不保留csv文件。
 
@@ -401,7 +401,7 @@ FROM tbcell NATURAL JOIN tbATUC2I NATURAL JOIN tbATUHandover
 WHERE "SECTOR_ID" LIKE '238397-1';
 ```
 查询效果如下:
-[![GaussDB1_09](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_09.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_09.csv)
+[![GaussDB1_09](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_09.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_09.csv)
 
 
 ## 查询10
@@ -467,9 +467,9 @@ WHERE "sum_Traffic" = "max_Traffic";
 
 查询结果如下：  
 （1）全部小区的最大月忙时话务量、最小月忙时话务量、平均月忙时话务量;
-[![GaussDB1_11_1](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_11_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_1.csv)  
+[![GaussDB1_11_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_11_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_1.csv)  
 （2）具有最大月忙时话务量的小区，列出该小区ID、名称、经纬度位置，以及月忙时话务量。
-[![GaussDB1_11_2](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_11_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_2.csv)
+[![GaussDB1_11_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_11_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_2.csv)
 
 ## 查询12
 查询代码如下：
@@ -514,7 +514,7 @@ WHERE "avg_Traffic" > (SELECT avg("avg_Traffic") AS "avg_All" FROM TEMP_13)
 ORDER BY "avg_Traffic" DESC;
 ```
 查询效果如下:
-[![GaussDB1_13](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_13.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_13.csv)
+[![GaussDB1_13](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_13.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_13.csv)
 
 ## 查询14 
 使用set membership查询  
@@ -557,7 +557,7 @@ WHERE "HEIGHT" > SOME(
 );
 ```
 查询结果如下：
-[![GaussDB1_15_1](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_15_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_1.csv)  
+[![GaussDB1_15_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_1.csv)  
 
 2. 
 设置待查询数据取值范围为：
@@ -584,7 +584,7 @@ FROM (/*获取题干要求的ID与RSRP值*/
      )NATURAL JOIN tbCell/*此处自然连接补充小区名称*/
 ```
 查询结果如下：
-[![GaussDB1_15_2](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_2.csv)
+[![GaussDB1_15_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_2.csv)
 
 ## 查询16
 
@@ -644,7 +644,7 @@ WHERE NOT EXISTS(/*恰好全部减掉说明后一个集合完全覆盖了前一�
     );
 ```
 查询结果如下：
-[![GaussDB1_17_1](https://github.com/Wang-Mingri/Pic/blob/main/lab1/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_17_1.csv)  
+[![GaussDB1_17_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_17_1.csv)  
 
 
 
