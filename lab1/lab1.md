@@ -417,7 +417,7 @@ WHERE A."C2I_Mean" > (SELECT "C2I_Mean"
 ORDER BY "C2I_Mean" DESC
 ```
 查询结果如下：
-[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_10.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_10.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_10.csv)
 
 
 ## 查询11
