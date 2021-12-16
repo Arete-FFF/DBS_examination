@@ -736,7 +736,21 @@ WHERE "HOATT" IN (SELECT MIN("HOATT")
 ![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_26_3.png)  
 
 
-
+## 查询28
+更改代码如下:
+```sql
+UPDATE tbatuc2i
+SET "RANK" =
+CASE WHEN "SECTOR_ID" = '238397-1' AND "COSITE" = '1' AND "RANK" >= '1'
+     THEN "RANK" - '1'
+     WHEN "SECTOR_ID" = '238397-1' AND "COSITE" = '0' AND "RANK" >= '1'
+     THEN "RANK" + '1'
+END;
+```
+ 
+共计更改数据1227行  
+更改结果如下：  
+![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_28.png)
 
 
 
