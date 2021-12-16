@@ -643,6 +643,42 @@ WHERE NOT EXISTS(/*恰好全部减掉说明后一个集合完全覆盖了前一�
 ```
 查询结果如下：
 [![GaussDB1_17_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_17_1.csv)  
+2. 
+查询代码如下:   
+```sql
+SELECT DISTINCT fri1."S_SECTOR_ID"
+FROM tbadjcell AS fri1
+WHERE NOT EXISTS(
+        (/*fri1中某个记录的所有一阶邻小区*/
+            SELECT fri2."N_SECTOR_ID"
+            FROM tbadjcell AS fri2
+            WHERE fri1."S_SECTOR_ID" = fri2."S_SECTOR_ID"
+        )
+        EXCEPT
+        (/*fri1中某个记录的所有二阶邻小区*/
+            SELECT "N_SECTOR_ID"
+            FROM tbsecadjcell AS sec
+            WHERE fri1."S_SECTOR_ID" = sec."S_SECTOR_ID"
+        )
+    )
+OR (/*查找另一种包含情况，不做赘述*/
+    NOT EXISTS(
+            (
+                SELECT "N_SECTOR_ID"
+                FROM tbsecadjcell AS sec
+                WHERE fri1."S_SECTOR_ID" = sec."S_SECTOR_ID"
+            )
+            EXCEPT
+            (
+                SELECT fri2."N_SECTOR_ID"
+                FROM tbadjcell AS fri2
+                WHERE fri1."S_SECTOR_ID" = fri2."S_SECTOR_ID"
+            )
+        )
+    );
+```
+查询结果如下：
+[![GaussDB1_17_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_17_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_17_2.csv)  
 
 
 
@@ -674,6 +710,25 @@ HAVING count("SECTOR_ID")>1
 ```
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_18.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_18.csv)
+
+## 查询19
+查询代码如下:
+```sql
+SELECT "SECTOR_ID", "avg_RRC"
+FROM (
+         SELECT "小区名称" AS "SECTOR_NAME", avg("RRC建立成功率qf (%)") AS "avg_RRC"
+         FROM tbCellKPI
+         WHERE (
+                     "起始时间" LIKE '07/17/2020%'
+                 OR "起始时间" LIKE '07/18/2020%'
+                 OR "起始时间" LIKE '07/19/2020%'
+             )
+         GROUP BY "小区名称"
+     ) NATURAL JOIN tbCell
+```
+查询结果如下：
+[![GaussDB1_19](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_19.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_19.csv) 
+
 
 ## 查询20
 查询代码如下：
