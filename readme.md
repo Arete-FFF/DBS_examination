@@ -484,3 +484,46 @@ WHERE "CELL_TYPE" = '优化区' AND tbcell."PCI" <> tbpciassignment."PCI"
 查询时间：72ms  
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_14_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_14_2.csv)
+
+## 查询15 
+
+1. 查询15-1
+查询代码如下:
+```sql
+SELECT "SECTOR_NAME", "SECTOR_ID", "HEIGHT"
+FROM tbCell
+WHERE "HEIGHT" > SOME(
+    SELECT "HEIGHT"
+    FROM tbCell
+    WHERE "LONGITUDE" BETWEEN '112.2' AND '112.7'
+        AND "LATITUDE" BETWEEN '33.2' AND '33.7'
+);
+```
+查询结果如下：
+[![GaussDB1_15_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_15_1.csv)  
+
+2. 查询15-2   
+设置待查询数据取值范围为：
+| name      | lower | upper |
+| --------- | ----- | ----- |
+| LONGITUDE | 112.2 | 112.7 |
+| LATITUDE  | 33.2  | 33.7  |  
+查询代码如下:
+```sql
+SELECT "SECTOR_ID", "SECTOR_NAME", "RSRP"
+FROM (/*获取题干要求的ID与RSRP值*/
+         SELECT "CellID" AS "SECTOR_ID", "RSRP"
+         FROM tbATUdata
+         WHERE "RSRP" > some (
+             SELECT "RSRP"
+             FROM (/*获取ENodeBID为253903的小区编号*/
+                      SELECT "SECTOR_ID" AS "CellID"
+                      FROM tbCell
+                      WHERE "ENODEBID" = '253903'
+                  )
+                      NATURAL JOIN tbATUdata
+         )
+     )NATURAL JOIN tbCell/*此处自然连接补充小区名称*/
+```
+查询结果如下：
+[![GaussDB1_15_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_15_2.csv)
