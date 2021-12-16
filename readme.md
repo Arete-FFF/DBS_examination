@@ -792,3 +792,16 @@ FROM tbsecadjcell
 WHERE "S_SECTOR_ID" = '124673-0';
 ```
 
+## 查询27
+插入代码如下:
+```sql
+UPDATE tbCell
+SET("PCI") = (
+    SELECT ("PCI")
+    FROM tbpciassignment AS ASS
+    WHERE ASS."SECTOR_ID" = tbCell."SECTOR_ID"
+    )
+```  
+查询结果如下：  
+[![GaussDB1_27](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_27.png)]   
+所以，函数依赖ENODEB_ID→PCI不成立，以上查询到的元组作为判断依据。
