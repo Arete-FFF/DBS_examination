@@ -743,3 +743,27 @@ WHERE "小区名称" = "SECTOR_NAME" AND
 ```
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_20.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_20.csv)
+
+## 查询21
+查询代码如下:
+```sql
+WITH TEMP_21 AS (
+    SELECT "SCELL", count("NCELL") AS "count_NCELL"
+    FROM (
+             SELECT DISTINCT tb1."SCELL", tb1."NCELL"
+             FROM tbHandOver AS tb1,
+                  tbHandOver AS tb2
+             WHERE tb1."SCELL" = tb2."SCELL"
+         )
+    GROUP BY "SCELL"
+)
+SELECT "SCELL", "MAX_count"
+FROM (
+         SELECT max("count_NCELL") AS "MAX_count"
+         FROM TEMP_21
+     ) NATURAL JOIN TEMP_21
+WHERE "MAX_count" = "count_NCELL"
+```
+查询结果如下：
+[![GaussDB1_21](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_21.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_21.csv) 
+
