@@ -721,6 +721,21 @@ WHERE "S_SECTOR_ID" = '124673-0'AND
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_24.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_24.csv)
 
 
+## 查询26
+删除代码如下：
+```sql
+DELETE FROM tbHandover
+WHERE "HOATT" IN (SELECT MIN("HOATT")
+                  FROM tbhandover);
+```
+删除数据中交换次数最小为1次  
+共删除数据618行  
+查询删除结果如下:
+![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_26_1.png)  
+![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_26_2.png)  
+![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_26_3.png)  
+
+
 
 
 
