@@ -73,8 +73,8 @@ CREATE TABLE tbCellKPI(
 "通过重建回源小区的eNodeB内同频切换出执行成功次数 (无)"	nvarchar2(255),
 "通过重建回源小区的eNodeB内异频切换出执行成功次数 (无)"	nvarchar2(255),
 "eNB内切换出成功次数 (次)"	nvarchar2(255),
-"eNB内切换出请求次数 (次)"	nvarchar2(255),
-primary key ("小区名称")/*,
+"eNB内切换出请求次数 (次)"	nvarchar2(255)
+/*primary key ("小区名称"),
 FOREIGN KEY ("ENODEB_NAME") REFERENCES tbCell*/
 );
 ```
@@ -571,4 +571,49 @@ WHERE "HOATT" >= all (SELECT max("HOATT")
 
 查询结果如下：
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_16_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_16_2.csv)
+
+
+## 查询18
+根据题目要求
+使用unique查询代码如下
+```sql
+SELECT tbadjcell."S_SECTOR_ID"
+ FROM tbadjcell
+ WHERE not UNIQUE(
+       select tbadjcell."S_SECTOR_ID"
+       from tbcell,tbadjcell
+       where tbcell."ENODEBID"=15114 AND
+       tbcell."SECTOR_ID"=tbadjcell."N_SECTOR_ID" )
+```
+执行代码过程出错：
+”UNIQUE predicate is not yet implemented“
+
+
+不使用unique查询代码如下：
+```sql
+SELECT "SECTOR_ID", "SECTOR_NAME"
+FROM tbcell join tbadjcell on tbcell."SECTOR_ID" = tbAdjCell."S_SECTOR_ID"
+WHERE tbAdjCell."N_SECTOR_ID" IN (SELECT DISTINCT "SECTOR_ID"
+                                    FROM (tbcell join tbadjcell on tbcell."SECTOR_ID" = tbAdjCell."N_SECTOR_ID") AS B
+                                    WHERE B."ENODEBID" = '15114')
+GROUP BY "SECTOR_ID", "SECTOR_NAME"
+HAVING count("SECTOR_ID")>1
+```
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_18.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_18.csv)
+
+## 查询20
+查询代码如下：
+```sql
+WITH A AS(SELECT "小区名称", avg("RRC建立成功率qf (%)") AS "avg_RPC"
+          FROM tbcellkpi
+          GROUP BY "小区名称")
+SELECT "SECTOR_ID" AS "小区ID", "小区名称", "avg_RPC"
+FROM tbcell , A
+WHERE "小区名称" = "SECTOR_NAME" AND
+      "avg_RPC" > 0.992
+```
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_20.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_20.csv)
+
 
