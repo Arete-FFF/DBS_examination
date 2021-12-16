@@ -803,5 +803,5 @@ SET("PCI") = (
     )
 ```  
 查询结果如下：  
-[![GaussDB1_27](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_27.png)]   
+![GaussDB1_27](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_27.png)     
 所以，函数依赖ENODEB_ID→PCI不成立，以上查询到的元组作为判断依据。
