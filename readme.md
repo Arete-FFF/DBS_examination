@@ -138,6 +138,7 @@ CREATE TABLE tbC2I (
 "WeightedC2I" nvarchar2(255)
 );
 ```
+
 #### *tbOptCell*
 ```sql
 DROP TABLE IF EXISTS tbOptCell;
@@ -148,17 +149,83 @@ CREATE TABLE tbOptCell (
 );
 ```
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+#### *tbATUdata*
+```sql
+DROP TABLE IF EXISTS tbATUdata;
+CREATE TABLE tbATUdata(
+"seq"	nvarchar2(255),
+"FileName"	nvarchar2(255),
+"Time"	nvarchar2(255),
+"Longitude"	nvarchar2(255),
+"Latitude"	nvarchar2(255),
+"CellID"	nvarchar2(255),
+"TAC"	nvarchar2(255),
+"EARFCN"	nvarchar2(255),
+"PCI"	nvarchar2(255),
+"RSRP"	nvarchar2(255),
+"RS SINR"	nvarchar2(255),
+"NCell_ID_1"	nvarchar2(255),
+"NCell_EARFCN_1"	nvarchar2(255),
+"NCell_PCI_1"	nvarchar2(255),
+"NCell_RSRP_1"	nvarchar2(255),
+"NCell_ID_2"	nvarchar2(255),
+"NCell_EARFCN_2"	nvarchar2(255),
+"NCell_PCI_2"	nvarchar2(255),
+"NCell_RSRP_2"	nvarchar2(255),
+"NCell_ID_3"	nvarchar2(255),
+"NCell_EARFCN_3"	nvarchar2(255),
+"NCell_PCI_3"	nvarchar2(255),
+"NCell_RSRP_3"	nvarchar2(255),
+"NCell_ID_4"	nvarchar2(255),
+"NCell_EARFCN_4"	nvarchar2(255),
+"NCell_PCI_4"	nvarchar2(255),
+"NCell_RSRP_4"	nvarchar2(255),
+"NCell_ID_5"	nvarchar2(255),
+"NCell_EARFCN_5"	nvarchar2(255),
+"NCell_PCI_5"	nvarchar2(255),
+"NCell_RSRP_5"	nvarchar2(255),
+"NCell_ID_6"	nvarchar2(255),
+"NCell_EARFCN_6"	nvarchar2(255),
+"NCell_PCI_6"	nvarchar2(255),
+"NCell_RSRP_6"	nvarchar2(255),
+PRIMARY KEY ("seq", "FileName")
+);
+```
+
+#### *tbHandOver*
+```sql
+DROP TABLE IF EXISTS tbHandOver;
+CREATE TABLE tbHandOver(
+=======
+>>>>>>> Stashed changes
 #### *tbHandOver*
 ```sql
 DROP TABLE IF EXISTS tbHandOver;
 CREATE TABLE tbHandOver (
+<<<<<<< Updated upstream
+=======
+>>>>>>> cccdeb83fc5aa752e55318c4e81601f33a2f177a
+>>>>>>> Stashed changes
 "CITY"	nvarchar2(255),
 "SCELL"	nvarchar2(255),
 "NCELL"	nvarchar2(255),
 "HOATT"	nvarchar2(255),
 "HOSUCC"	nvarchar2(255),
+<<<<<<< Updated upstream
 "HOSUCCRATE" nvarchar2(255)
 );
+=======
+<<<<<<< HEAD
+"HOSUCCRATE"	nvarchar2(255),
+PRIMARY KEY ("SCELL", "NCELL")
+=======
+"HOSUCCRATE" nvarchar2(255)
+);
+>>>>>>> cccdeb83fc5aa752e55318c4e81601f33a2f177a
+>>>>>>> Stashed changes
 );
 ```
 -------------------------------------------------------------------------------
@@ -543,6 +610,39 @@ FROM (/*获取题干要求的ID与RSRP值*/
 查询结果如下：
 [![GaussDB1_15_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_15_2.csv)
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+## 查询17
+1. 
+查询代码如下:   
+```sql
+SELECT DISTINCT "SCELL"
+FROM tbHandOver AS tb1
+WHERE NOT EXISTS(/*恰好全部减掉说明后一个集合完全覆盖了前一个集合，故NOT EXISTS返回True*/
+        /*生成四元素集合以供求差*/
+        (
+            SELECT '15290-128'
+            UNION
+            SELECT '259595-1'
+            UNION
+            SELECT '124711-0'
+            UNION
+            SELECT '47444-1'
+        )
+        EXCEPT
+        /*对于tb1的每一条记录，用倍增法将所有同SCELL的值抽出来叠放在一起，tb2用于铺陈不同NCELL的结果*/
+        (
+            SELECT tb2."NCELL"
+            FROM tbHandOver AS tb2
+            WHERE tb1."SCELL" = tb2."SCELL"
+        )
+    );
+```
+查询结果如下：
+[![GaussDB1_17_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_17_1.csv)  
+=======
+>>>>>>> Stashed changes
 ## 查询16
 
 1. 
@@ -617,3 +717,7 @@ WHERE "小区名称" = "SECTOR_NAME" AND
 [![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_20.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_20.csv)
 
 
+<<<<<<< Updated upstream
+=======
+>>>>>>> cccdeb83fc5aa752e55318c4e81601f33a2f177a
+>>>>>>> Stashed changes
