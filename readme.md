@@ -707,3 +707,21 @@ HAVING count("LteNcPci") > 1;
 由查询结果可知，存在许多count>1的元组  
 故"TimeStamp", "ServingSector", "InterferingSector"不能组成超键
 
+## 查询24
+插入代码以及查询代码如下：
+```sql
+insert into tbadjcell values('124673-0','259627-2','38400', '38400');
+SELECT *
+FROM tbadjcell
+WHERE "S_SECTOR_ID" = '124673-0'AND
+      "N_SECTOR_ID" = '259627-2'
+```
+
+查询结果如下：
+[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_24.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/GaussDB1_24.csv)
+
+
+
+
+
+
