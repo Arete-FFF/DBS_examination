@@ -229,7 +229,7 @@ ORDER BY "LONGITUDE" DESC,
     "EARFCN" DESC
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_01](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_01.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_01.csv)
+[![GaussDB1_01](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_01.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_01.csv)
 
 ## 查询2
 设置待查询数据取值范围为：
@@ -254,7 +254,7 @@ order by "LONGITUDE" asc, "LATITUDE" desc
 查询结果：66条  
 查询时间：76ms
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_02_1](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_02_1.csv)
+[![GaussDB1_02_1](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_02_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_02_1.csv)
 去重情况下：
 SQL查询代码如下
 ```sql
@@ -271,7 +271,7 @@ order by "LONGITUDE" desc ,"LATITUDE"asc
 查询结果：25条  
 查询时间：64ms
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_02_2](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_02_2.csv)
+[![GaussDB1_02_2](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_02_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_02_2.csv)
 由结果可见去重后的总查询时间变短
 
 
@@ -288,7 +288,7 @@ WHERE ("SECTOR_NAME" LIKE 'A池%' OR
     ("SECTOR_NAME" LIKE '%-1');
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![GaussDB1_03](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_03.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_03.csv)
+[![GaussDB1_03](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_03.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_03.csv)
 
 ## 查询4
 
@@ -300,7 +300,7 @@ WHERE "SECTOR_NAME" LIKE '_____-HLHF-_' AND
       LENGTH("ENODEB_NAME") > 8;
 ```
 DataGrip运行界面与部分结果截图（点击图片跳转至完整输出文件）
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_04.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_04.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_04.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_04.csv)
 ## 查询5
 
 未去重情况：  
@@ -315,7 +315,7 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：646条  
 查询时间：64ms
-[![GaussDB1_05_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_2.csv)
+[![GaussDB1_05_2](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_05_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_2.csv)
 
 去重情况下：
 SQL查询代码如下
@@ -329,7 +329,7 @@ WHERE cast("E-RAB建立成功率2 (%)" as float) > 0.99;
 ```
 查询结果：323条  
 查询时间：62ms
-[![GaussDB1_05_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_1.csv)
+[![GaussDB1_05_1](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_05_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_05_1.csv)
 由结果可见去重后的总查询时间变短
 
 ## 查询6
@@ -344,7 +344,7 @@ FROM tbcell AS t1 ,tbcell AS t2
 WHERE t1."LATITUDE" < t2."LATITUDE");
 ```
 查询时间:23.469s
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_1.png))](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_06_1.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_06_1.png))](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_06_1.csv)
 
 使用EXCEPT ALL   
 SQL查询代码如下
@@ -356,7 +356,7 @@ FROM tbcell AS t1 ,tbcell AS t2
 WHERE t1."LATITUDE" < t2."LATITUDE");
 ```
 查询时间:23.665s
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_06_2.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_06_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_06_2.csv)
 
 使用 MAX 函数  
 SQL查询代码如下
@@ -367,7 +367,7 @@ WHERE "LATITUDE" =  (SELECT max("LATITUDE")
                     FROM tbcell);
 ```
 查询时间：0.072s
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_06_3.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_06_3.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_06_3.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_06_3.csv)
 使用聚集函数查询时间能大大降低，查询结果并无区别
 
 ## 查询7
@@ -378,7 +378,7 @@ SELECT *
 FROM tbMROData, tbCellTraffic;
 ```
 查询效果如下：
-[![GaussDB1_07](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_07.png)]()  
+[![GaussDB1_07](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_07.png)]()  
 由结果可见,大规模笛卡尔积的结果在仅显示结果头部时并不需要大量时间，但以指定查询结尾页为例，Datagrip客户端加载7分钟后报错，强行退出查询程序。  
 本次查询不保留csv文件。
 
@@ -390,7 +390,7 @@ SELECT "SECTOR_ID", "SECTOR_NAME", "EARFCN", tbadjcell."N_SECTOR_ID" as "ADJ_SEC
 FROM tbcell join (tbadjcell natural join tbsecadjcell) on "SECTOR_ID" = tbadjcell."S_SECTOR_ID"
 ```
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_08_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_08.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_08_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_08.csv)
 
 ## 查询9
 
@@ -401,7 +401,7 @@ FROM tbcell NATURAL JOIN tbATUC2I NATURAL JOIN tbATUHandover
 WHERE "SECTOR_ID" LIKE '238397-1';
 ```
 查询效果如下:
-[![GaussDB1_09](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_09.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_09.csv)
+[![GaussDB1_09](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_09.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_09.csv)
 
 
 ## 查询10
@@ -417,7 +417,7 @@ WHERE A."C2I_Mean" > (SELECT "C2I_Mean"
 ORDER BY "C2I_Mean" DESC
 ```
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_10.jpg)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_10.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_10.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_10.csv)
 
 
 ## 查询11
@@ -467,9 +467,9 @@ WHERE "sum_Traffic" = "max_Traffic";
 
 查询结果如下：  
 （1）全部小区的最大月忙时话务量、最小月忙时话务量、平均月忙时话务量;
-[![GaussDB1_11_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_11_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_1.csv)  
+[![GaussDB1_11_1](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_11_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_1.csv)  
 （2）具有最大月忙时话务量的小区，列出该小区ID、名称、经纬度位置，以及月忙时话务量。
-[![GaussDB1_11_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_11_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_2.csv)
+[![GaussDB1_11_2](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_11_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_11_2.csv)
 
 ## 查询12
 查询代码如下：
@@ -484,7 +484,7 @@ WHERE "CELL_TYPE" = '优化区'
 ORDER BY B."count" DESC
 ```
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_12.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_12.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_12.csv)
 
 
 ## 查询13
@@ -514,7 +514,7 @@ WHERE "avg_Traffic" > (SELECT avg("avg_Traffic") AS "avg_All" FROM TEMP_13)
 ORDER BY "avg_Traffic" DESC;
 ```
 查询效果如下:
-[![GaussDB1_13](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_13.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_13.csv)
+[![GaussDB1_13](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_13.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_13.csv)
 
 ## 查询14 
 使用set membership查询  
@@ -528,7 +528,7 @@ WHERE
 ```
 查询时间：83ms  
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_14_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_14_1.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_14_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_14_1.csv)
 
 使用非嵌套查询  
 查询代码如下：
@@ -540,7 +540,7 @@ WHERE "CELL_TYPE" = '优化区' AND tbcell."PCI" <> tbpciassignment."PCI"
 
 查询时间：72ms  
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_14_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_14_2.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_14_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_14_2.csv)
 
 ## 查询15 
 
@@ -557,7 +557,7 @@ WHERE "HEIGHT" > SOME(
 );
 ```
 查询结果如下：
-[![GaussDB1_15_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_1.csv)  
+[![GaussDB1_15_1](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_15_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_1.csv)  
 
 2. 
 设置待查询数据取值范围为：
@@ -584,7 +584,7 @@ FROM (/*获取题干要求的ID与RSRP值*/
      )NATURAL JOIN tbCell/*此处自然连接补充小区名称*/
 ```
 查询结果如下：
-[![GaussDB1_15_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_2.csv)
+[![GaussDB1_15_2](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_15_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_15_2.csv)
 
 ## 查询16
 
@@ -599,7 +599,7 @@ HAVING "Hour_count" >= all (SELECT count("Hour") AS "Hour_count"
                             GROUP BY "Sector_ID")
 ```
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_16_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_16_1.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_16_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_16_1.csv)
 
 
 2. 
@@ -613,7 +613,7 @@ WHERE "HOATT" >= all (SELECT max("HOATT")
 ```
 
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_16_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_16_2.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_16_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_16_2.csv)
 
 
 
@@ -643,8 +643,45 @@ WHERE NOT EXISTS(/*恰好全部减掉说明后一个集合完全覆盖了前一�
         )
     );
 ```
-查询结果如下：
-[![GaussDB1_17_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_17_1.csv)  
+查询结果如下：  
+
+[![GaussDB1_17_1](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_17_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_17_1.csv)  
+2.   
+查询代码如下:   
+```sql
+SELECT DISTINCT fri1."S_SECTOR_ID"
+FROM tbadjcell AS fri1
+WHERE NOT EXISTS(
+        (/*fri1中某个记录的所有一阶邻小区*/
+            SELECT fri2."N_SECTOR_ID"
+            FROM tbadjcell AS fri2
+            WHERE fri1."S_SECTOR_ID" = fri2."S_SECTOR_ID"
+        )
+        EXCEPT
+        (/*fri1中某个记录的所有二阶邻小区*/
+            SELECT "N_SECTOR_ID"
+            FROM tbsecadjcell AS sec
+            WHERE fri1."S_SECTOR_ID" = sec."S_SECTOR_ID"
+        )
+    )
+OR (/*查找另一种包含情况，不做赘述*/
+    NOT EXISTS(
+            (
+                SELECT "N_SECTOR_ID"
+                FROM tbsecadjcell AS sec
+                WHERE fri1."S_SECTOR_ID" = sec."S_SECTOR_ID"
+            )
+            EXCEPT
+            (
+                SELECT fri2."N_SECTOR_ID"
+                FROM tbadjcell AS fri2
+                WHERE fri1."S_SECTOR_ID" = fri2."S_SECTOR_ID"
+            )
+        )
+    );
+```
+查询结果如下：  
+[![GaussDB1_17_2](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_17_2.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_17_2.csv)  
 
 
 
@@ -676,7 +713,26 @@ GROUP BY "SECTOR_ID", "SECTOR_NAME"
 HAVING count("SECTOR_ID") > 1;
 ```
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_18.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_18.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_18.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_18.csv)
+
+## 查询19
+查询代码如下:
+```sql
+SELECT "SECTOR_ID", "avg_RRC"
+FROM (
+         SELECT "小区名称" AS "SECTOR_NAME", avg("RRC建立成功率qf (%)") AS "avg_RRC"
+         FROM tbCellKPI
+         WHERE (
+                     "起始时间" LIKE '07/17/2020%'
+                 OR "起始时间" LIKE '07/18/2020%'
+                 OR "起始时间" LIKE '07/19/2020%'
+             )
+         GROUP BY "小区名称"
+     ) NATURAL JOIN tbCell
+```
+查询结果如下：
+[![GaussDB1_19](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_19.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_19.csv) 
+
 
 ## 查询20
 查询代码如下：
@@ -691,8 +747,30 @@ WHERE "小区名称" = "SECTOR_NAME"
   AND "avg_RPC" > 0.992;
 ```
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_20.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_20.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_20.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_20.csv)
 
+## 查询21
+查询代码如下:
+```sql
+WITH TEMP_21 AS (
+    SELECT "SCELL", count("NCELL") AS "count_NCELL"
+    FROM (
+             SELECT DISTINCT tb1."SCELL", tb1."NCELL"
+             FROM tbHandOver AS tb1,
+                  tbHandOver AS tb2
+             WHERE tb1."SCELL" = tb2."SCELL"
+         )
+    GROUP BY "SCELL"
+)
+SELECT "SCELL", "MAX_count"
+FROM (
+         SELECT max("count_NCELL") AS "MAX_count"
+         FROM TEMP_21
+     ) NATURAL JOIN TEMP_21
+WHERE "MAX_count" = "count_NCELL"
+```
+查询结果如下：   
+[![GaussDB1_21](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_21.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_21.csv) 
 
 ## 查询22
 查询代码如下
@@ -706,9 +784,29 @@ HAVING count("LteNcPci") > 1;
 根据题目要求可知，判断"TimeStamp", "ServingSector", "InterferingSector"是否组成超键。将这三列进行聚类，然后随机统计其他列个数，若存在大于1的行，则证明这三个键不能组成超键
 
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_22.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_22.csv)
+
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_22.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_22.csv)
 由查询结果可知，存在许多count>1的元组  
 故"TimeStamp", "ServingSector", "InterferingSector"不能组成超键
+
+
+## 查询23
+查询代码如下:
+```sql
+SELECT DISTINCT *
+FROM tbpciassignment NATURAL JOIN (
+    SELECT COUNT("PCI") AS COUNT_PCI
+    FROM tbpciassignment
+    GROUP BY "ENODEB_ID"
+)
+WHERE COUNT_PCI > 1
+```
+查询结果如下：  
+[![GaussDB1_23](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_23.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_23.csv)   
+所以，函数依赖ENODEB_ID→PCI不成立，以上查询到的元组作为判断依据。
+
+
+
 
 ## 查询24
 插入代码以及查询代码如下：
@@ -722,7 +820,22 @@ WHERE "S_SECTOR_ID" = '124673-0'
 ```
 
 查询结果如下：
-[![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_24.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_24.csv)
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_24.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_24.csv)
+
+
+
+
+
+
+## 查询25
+插入代码如下:
+```sql
+INSERT INTO tbadjcell("S_SECTOR_ID", "N_SECTOR_ID")
+SELECT "S_SECTOR_ID", "N_SECTOR_ID"
+FROM tbsecadjcell
+WHERE "S_SECTOR_ID" = '124673-0';
+```
+
 
 
 ## 查询26
@@ -736,9 +849,26 @@ WHERE "HOATT" IN (SELECT MIN("HOATT")
 删除数据中交换次数最小为1次  
 共删除数据618行  
 查询删除结果如下:
-![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_26_1.png)  
-![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_26_2.png)  
-![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_26_3.png)  
+![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_26_1.png)  
+![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_26_2.png)  
+![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_26_3.png)  
+
+
+## 查询27
+插入代码如下:
+```sql
+UPDATE tbCell
+SET("PCI") = (
+    SELECT ("PCI")
+    FROM tbpciassignment AS ASS
+    WHERE ASS."SECTOR_ID" = tbCell."SECTOR_ID"
+    )
+```  
+查询结果如下：  
+![GaussDB1_27](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_27.png)     
+所以，函数依赖ENODEB_ID→PCI不成立，以上查询到的元组作为判断依据。
+
+
 
 
 ## 查询28
@@ -756,7 +886,10 @@ SET "RANK" =
  
 共计更改数据1227行  
 更改结果如下：  
-![](https://cdn.jsdelivr.net/gh/Arete-FFF/DBS_examination/img/GaussDB1_28.png)
+![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_28.png)
 
+
+
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/img/GaussDB1_20.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab1/GaussDB1_20.csv)
 
 
