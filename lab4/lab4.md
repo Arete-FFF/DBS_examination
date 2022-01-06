@@ -210,9 +210,17 @@ select * from PG_LOCKS;
 在第一个sql查询标签中开启事务，执行select for update 语句，该语句对表中符合条件的元组/数据行加上互斥锁。
 ```sql
 start transaction;
-select * from tbcell where "SECTOR_ID" = '888' for update
+select * from tbcell where "SECTOR_ID" = '124676-0' for update
 ```
 
+结果如下：
+![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab4/img/GaussDB4_08_01.png)
+
+同样在第二个事务中执行上述语句
+因为互斥锁原因，该sql语言一直显示正在执行中。  
+几分钟之后出现如下结果：  
+![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab4/img/GaussDB4_08_02.png)
+互斥锁设置成功
 
 
 
