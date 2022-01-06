@@ -420,5 +420,24 @@ WHERE "S_SECTOR_ID" = '124673-0';
 
 [![GaussDB3_03_7](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_7.png)]()  
 
-    
+
 由上述三项操作的成功与否可以看出，前两项操作的失败是由于添加了并未出现在tbCell表格内已存在的项目所以导致。而删除某项数据因未引入不存在与tbCell内的依赖项而可以正常执行。
+
+## 函数依赖分析验证
+
+### 判断函数依赖关系是否存在
+为判断函数依赖关系函数依赖：  
+*ENODEBID → LONGITUDE, LATITUDE（即 α → β）*  
+是否成立，需判断  
+*∀ t1, t2 ∈ tbCell，t1[α]=t2[α] ⇒ t1[β]=t2[β]*  
+是否成立。  
+
+其求解SQL语句如下：  
+```sql
+SELECT tb1."ENODEBID"
+FROM tbCell AS tb1, tbCell AS tb2
+WHERE tb1."ENODEBID" = tb2."ENODEBID" AND (
+    tb1."LONGITUDE" <> tb2."LONGITUDE" OR tb1."LATITUDE" <> tb2."LATITUDE");
+```
+执行效果如下：  
+[![GaussDB3_04_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_04_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab3/GaussDB3_04_1.csv)  
