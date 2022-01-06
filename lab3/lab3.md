@@ -395,3 +395,26 @@ ADD CONSTRAINT "FK_NCELL" FOREIGN KEY ("NCELL") REFERENCES tbCell("SECTOR_ID");
 ```
 执行效果如图所示：  
 [![GaussDB3_03_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_2.png)]()
+
+
+### 非级联外键关联下数据访问
+分别设置三组增删修改的语句，各自执行后的效果如下所述
+```sql
+INSERT INTO tbAdjCell
+VALUES ('INSERT_TEST', 'INSERT_TEST', 'INSERT_TEST', 'INSERT_TEST');
+
+UPDATE tbAdjCell
+SET "N_SECTOR_ID" = 'UPDATE_TEST' WHERE "S_SECTOR_ID" = '124673-0';
+
+DELETE FROM tbAdjCell
+WHERE "S_SECTOR_ID" = '124673-0';
+```
+各自的执行效果如下：  
+- 增加
+[![GaussDB3_03_5](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_5.png)]()  
+- 修改
+[![GaussDB3_03_6](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_6.png)]()   
+- 删除
+[![GaussDB3_03_7](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_7.png)]()  
+
+由上述三项操作的成功与否可以看出，前两项操作的失败是由于添加了并未出现在tbCell表格内已存在的项目所以导致。而删除某项数据因未引入不存在与tbCell内的依赖项而可以正常执行。
