@@ -239,8 +239,7 @@ WHERE "SECTOR_ID" = '124672-0';
 ### 参照完整性约束验证
 
 #### 判断参照完整性约束是否满足
-首先，利用分布式版本数据库对于tbCell是否覆盖所有数据进行探查。
-通过如下所述的SQL语句进行测试：
+首先，利用分布式版本数据库对于tbCell是否覆盖所有数据进行探查。以tbCell与tbAdjCell之间的外键依赖为例，通过如下所述的SQL语句进行测试：
 ```sql
 SELECT "S_SECTOR_ID"
 FROM tbAdjCell
@@ -257,8 +256,43 @@ WHERE NOT EXISTS(
     WHERE "SECTOR_ID" = "N_SECTOR_ID"
 );
 ```
-执行效果如图所示：
+执行效果如图所示：  
+[![GaussDB3_03_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab3/GaussDB3_03_1.csv)    
+显然，参照完整性约束并不满足，tbAdjCell的N_SECTOR_ID中的部分值并不在tbCell中。
 
+#### 改造参照关系表，以满足完整性要求
+
+处理tbAdjCell中的异常数据，使得剔除这部分数据后的tbAdjCell满足参照完整性约束。代码实现如下：  
+```sql
+DELETE FROM tbAdjCell
+WHERE "S_SECTOR_ID" = SOME(
+    SELECT "S_SECTOR_ID"
+    FROM tbAdjCell
+    WHERE NOT EXISTS(
+            SELECT "SECTOR_ID"
+            FROM tbCell
+            WHERE "SECTOR_ID" = "S_SECTOR_ID"
+        )
+    );
+DELETE FROM tbAdjCell
+WHERE "N_SECTOR_ID" = SOME(
+    SELECT "N_SECTOR_ID"
+    FROM tbAdjCell
+    WHERE NOT EXISTS(
+            SELECT "SECTOR_ID"
+            FROM tbCell
+            WHERE "SECTOR_ID" = "N_SECTOR_ID"
+        )
+    );
+```
+执行效果如图所示：  
+[![GaussDB3_03_3](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_3.png)]()  
+
+再次执行上述完整性约束判断，效果如图所示：  
+[![GaussDB3_03_4](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_4.png)]()  
+本次探查未检索到非法数据，也就说明修改后的tbAdjCell表格满足了与tbCell之间的参照完整性约束。
+
+#### 非级联外键依赖关联的构建
 
 受迫于原先实验完全在分布式版数据库中实现，首先在主备版finance数据库中重新建表导入数据，SQL语句如下：
 
@@ -358,3 +392,33 @@ ALTER TABLE tbC2I
 ADD CONSTRAINT "FK_SCELL" FOREIGN KEY ("SCELL") REFERENCES tbCell("SECTOR_ID");
 ALTER TABLE tbC2I
 ADD CONSTRAINT "FK_NCELL" FOREIGN KEY ("NCELL") REFERENCES tbCell("SECTOR_ID");
+```
+执行效果如图所示：  
+[![GaussDB3_03_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_2.png)]()
+
+
+### 非级联外键关联下数据访问
+分别设置三组增删修改的语句，各自执行后的效果如下所述
+```sql
+INSERT INTO tbAdjCell
+VALUES ('INSERT_TEST', 'INSERT_TEST', 'INSERT_TEST', 'INSERT_TEST');
+
+UPDATE tbAdjCell
+SET "N_SECTOR_ID" = 'UPDATE_TEST' WHERE "S_SECTOR_ID" = '124673-0';
+
+DELETE FROM tbAdjCell
+WHERE "S_SECTOR_ID" = '124673-0';
+```
+各自的执行效果如下：  
+- 增加  
+
+[![GaussDB3_03_5](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_5.png)]()  
+- 修改  
+
+[![GaussDB3_03_6](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_6.png)]()   
+- 删除  
+
+[![GaussDB3_03_7](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_7.png)]()  
+
+    
+由上述三项操作的成功与否可以看出，前两项操作的失败是由于添加了并未出现在tbCell表格内已存在的项目所以导致。而删除某项数据因未引入不存在与tbCell内的依赖项而可以正常执行。
