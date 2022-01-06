@@ -239,8 +239,7 @@ WHERE "SECTOR_ID" = '124672-0';
 ### 参照完整性约束验证
 
 #### 判断参照完整性约束是否满足
-首先，利用分布式版本数据库对于tbCell是否覆盖所有数据进行探查。
-通过如下所述的SQL语句进行测试：
+首先，利用分布式版本数据库对于tbCell是否覆盖所有数据进行探查。以tbCell与tbAdjCell之间的外键依赖为例，通过如下所述的SQL语句进行测试：
 ```sql
 SELECT "S_SECTOR_ID"
 FROM tbAdjCell
@@ -262,6 +261,38 @@ WHERE NOT EXISTS(
 显然，参照完整性约束并不满足，tbAdjCell的N_SECTOR_ID中的部分值并不在tbCell中。
 
 #### 改造参照关系表，以满足完整性要求
+
+处理tbAdjCell中的异常数据，使得剔除这部分数据后的tbAdjCell满足参照完整性约束。代码实现如下：  
+```sql
+DELETE FROM tbAdjCell
+WHERE "S_SECTOR_ID" = SOME(
+    SELECT "S_SECTOR_ID"
+    FROM tbAdjCell
+    WHERE NOT EXISTS(
+            SELECT "SECTOR_ID"
+            FROM tbCell
+            WHERE "SECTOR_ID" = "S_SECTOR_ID"
+        )
+    );
+DELETE FROM tbAdjCell
+WHERE "N_SECTOR_ID" = SOME(
+    SELECT "N_SECTOR_ID"
+    FROM tbAdjCell
+    WHERE NOT EXISTS(
+            SELECT "SECTOR_ID"
+            FROM tbCell
+            WHERE "SECTOR_ID" = "N_SECTOR_ID"
+        )
+    );
+```
+执行效果如图所示：  
+[![GaussDB3_03_3](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_3.png)]()  
+
+再次执行上述完整性约束判断，效果如图所示：  
+[![GaussDB3_03_4](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_4.png)]()  
+本次探查未检索到非法数据，也就说明修改后的tbAdjCell表格满足了与tbCell之间的参照完整性约束。
+
+#### 非级联外键依赖关联的构建
 
 受迫于原先实验完全在分布式版数据库中实现，首先在主备版finance数据库中重新建表导入数据，SQL语句如下：
 
