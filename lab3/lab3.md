@@ -410,11 +410,15 @@ DELETE FROM tbAdjCell
 WHERE "S_SECTOR_ID" = '124673-0';
 ```
 各自的执行效果如下：  
-- 增加
+- 增加  
+
 [![GaussDB3_03_5](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_5.png)]()  
-- 修改
+- 修改  
+
 [![GaussDB3_03_6](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_6.png)]()   
-- 删除
+- 删除  
+
 [![GaussDB3_03_7](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_7.png)]()  
 
+    
 由上述三项操作的成功与否可以看出，前两项操作的失败是由于添加了并未出现在tbCell表格内已存在的项目所以导致。而删除某项数据因未引入不存在与tbCell内的依赖项而可以正常执行。
