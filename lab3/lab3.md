@@ -434,10 +434,11 @@ WHERE "S_SECTOR_ID" = '124673-0';
 
 其求解SQL语句如下：  
 ```sql
-SELECT tb1."ENODEBID"
+SELECT DISTINCT tb1."ENODEBID", tb1."LONGITUDE", tb1."LATITUDE", tb2."LONGITUDE", tb2."LATITUDE"
 FROM tbCell AS tb1, tbCell AS tb2
 WHERE tb1."ENODEBID" = tb2."ENODEBID" AND (
     tb1."LONGITUDE" <> tb2."LONGITUDE" OR tb1."LATITUDE" <> tb2."LATITUDE");
 ```
 执行效果如下：  
 [![GaussDB3_04_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_04_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab3/GaussDB3_04_1.csv)  
+因存在不满足条件的记录，故当前三者之间不存在函数依赖关系
