@@ -442,3 +442,6 @@ WHERE tb1."ENODEBID" = tb2."ENODEBID" AND (
 执行效果如下：  
 [![GaussDB3_04_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_04_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab3/GaussDB3_04_1.csv)  
 因存在不满足条件的记录，故当前三者之间不存在函数依赖关系
+
+### 寻找函数依赖不存在的元组
+特别声明，上述寻得的86条记录未经过去重，tb1与tb2的反身对应记录未经筛除。
