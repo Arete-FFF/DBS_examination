@@ -182,6 +182,37 @@ start transaction;
 select "EARFCN" from tboptcell where "SECTOR_ID" = '15113-3';
 ```
 结果如下:
+![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab4/img/GaussDB4_06_01.png)
+
+可见在Repeatable read隔离级别中，若出现上述代码，则会报错，只能在存在事务提交之后，才能完成sql语句执行。
+
+
+## 事务锁机制
+
+### 查看各打开事务所持有的锁信息
+```sql
+select * from PG_LOCKS;
+```
+
+实验结果如下:
+[![](https://github.com/Arete-FFF/DBS_examination/blob/main/lab4/img/GaussDB4_07_01.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab4/GaussDB4_07_01.csv)
+
+上述图片为对应csv文件的超链接，为当前事务所持有的锁信息
+
+### 死锁分析
+
+#### 死锁内容
+当两个或以上的事务相互持有和请求锁，并形成一个循环的依赖关系，就会产生死锁。多个事务同时
+锁定同一个资源时，也可能产生死锁。死锁无法完全避免的，系统会自动检测事务死锁，立即回滚其中某
+个事务，并且返回一个错误。它根据某种机制来选择回滚代价最小的事务来进行回滚。
+
+#### 实验步骤
+在第一个sql查询标签中开启事务，执行select for update 语句，该语句对表中符合条件的元组/数据行加上互斥锁。
+```sql
+start transaction;
+select * from tbcell where "SECTOR_ID" = '888' for update
+```
+
 
 
 
