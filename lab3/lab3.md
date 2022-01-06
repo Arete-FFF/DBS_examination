@@ -257,7 +257,7 @@ WHERE NOT EXISTS(
     WHERE "SECTOR_ID" = "N_SECTOR_ID"
 );
 ```
-执行效果如图所示：
+执行效果如图所示：  
 [![GaussDB3_03_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_1.png)](https://github.com/Arete-FFF/DBS_examination/blob/main/lab3/GaussDB3_03_1.csv)    
 显然，参照完整性约束并不满足，tbAdjCell的N_SECTOR_ID中的部分值并不在tbCell中。
 
@@ -361,6 +361,6 @@ ALTER TABLE tbC2I
 ADD CONSTRAINT "FK_SCELL" FOREIGN KEY ("SCELL") REFERENCES tbCell("SECTOR_ID");
 ALTER TABLE tbC2I
 ADD CONSTRAINT "FK_NCELL" FOREIGN KEY ("NCELL") REFERENCES tbCell("SECTOR_ID");
-
-执行效果如图所示：
-[![GaussDB3_03_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_2.png)]()  
+```
+执行效果如图所示：  
+[![GaussDB3_03_2](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_03_2.png)]()
