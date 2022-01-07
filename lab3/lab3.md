@@ -445,3 +445,35 @@ WHERE tb1."ENODEBID" = tb2."ENODEBID" AND (
 
 ### 寻找函数依赖不存在的元组
 特别声明，上述寻得的86条记录未经过去重，tb1与tb2的反身对应记录未经筛除。
+
+## 触发器约束
+
+### 数据插入查重触发器
+
+对tbCell的SECTOR_ID项目进行触发器约束，对新插入项目的主键进行检查，若未存在则正常插入，若已存在则更新表格。代码实现如下：   
+```sql
+CREATE FUNCTION insert_func() RETURNS TRIGGER
+AS $$ DECLARE
+    cnt INTEGER ;
+BEGIN 
+    cnt = (SELECT count(*)
+           FROM tbcell
+           WHERE "SECTOR_ID" = NEW."SECTOR_ID");
+    IF cnt >= 1 THEN
+        DELETE FROM tbcell
+        WHERE "SECTOR_ID" = NEW."SECTOR_ID";
+    END IF; 
+    RETURN NEW;
+END;
+
+$$ LANGUAGE PLPGSQL;
+
+
+CREATE TRIGGER INSERT_TRIGGER
+BEFORE INSERT
+ON tbcell
+FOR EACH ROW
+EXECUTE PROCEDURE insert_func();
+```  
+可以正常执行，效果如下：  
+[![GaussDB3_05_1](https://github.com/Wang-Mingri/Pic/blob/main/GaussDB3_05_1.png)]()  
